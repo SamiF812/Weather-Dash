@@ -10,14 +10,78 @@
 </head>
 <body>
     <header>
-        <section class="has-text-centered has-background-success-dark p-4">   
+        <section class="has-text-centered has-background-success p-4">   
             <h1 class="title is-1 is-italic is-underlined">Sami's Weather App</h1>
-            <figure class="image is-128x128">
-                <img src="./Assets/images/headerimg.jpg">
             </figure>
         </section> 
     </header>
+    <main>
+        <h2>Search for a City:</h2>
+        <section class="columns searchBar">
+        <form class="column is-one-quarter mx-1" id="searchform">
+        <input class="input is-centered mx-1" type="text" placeholder="Search a City" id="searchbar">
+        <button class="button is-success is-one-quarter mx-1 my-3 submit" type="submit" id="submit">Search</button>
+        </form>
+        
+    </section>
     
-    <script src="/script.js"></script>
+        <section class="columns searchResult">
+        <!-- Current City Main Card -->
+        <section class="column is-half searchedCity" id="today">
+          <div class="card p-6">
+
+        <div class="content has-text-centered mb-6">
+        </div>
+
+            </div>
+        </section>
+
+        <section></section>
+        <h3>5-Day Forecast</h3>
+        </section>
+        
+        <div class="columns fiveDay">
+            <div class="column">
+              One
+            </div>
+            <div class="column">
+              Two
+            </div>
+            <div class="column">
+              Three
+            </div>
+            <div class="column">
+              Four
+            </div>
+            <div class="column">
+              Five
+            </div>
+          </div>
+          
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+       
+
+
+
+
+
+
+
+     <script src="/script.js"></script>
+</main>
 </body>
 </html>

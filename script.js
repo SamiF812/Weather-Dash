@@ -1,6 +1,8 @@
 // variable to hold query
 const weatherAPI = "2f68f31ec768946954517a3458d379b7";
 let currentCity = "Orlando";
+let submit = document.querySelector("#submit");
+let searchBar = document.querySelector("#searchbar");
 
 function searchCity(city) {
     // constructing the query that will be put inside the fetch
@@ -24,7 +26,7 @@ function searchCity(city) {
                     return res.json();
                 })
                 .then(function (data) {
-                    console.log(data);
+                    displayToday(data.current)
                 })
                 .catch((err) => {
                     console.error(err);
@@ -34,5 +36,29 @@ function searchCity(city) {
             console.error(err);
         });
 }
-searchCity(currentCity);
-searchCity("Denver");
+submit.addEventListener("click", function(event){
+    event.preventDefault();
+    currentCity = searchBar.value;
+    searchCity(currentCity);
+    
+})
+
+function displayToday(data){
+    console.log(data)
+    let today = document.querySelector("#today")
+    today.innerHTML = ""
+    let cityNameEl = document.createElement("h2")
+    cityNameEl.innerText = currentCity
+    let humidityEl = document.createElement("p")
+    humidityEl.innerText = "humidity: "+ data.humidity
+    let icon = document.createElement("img")
+    icon.setAttribute("src", "http://openweathermap.org/img/wn/"+data.weather[0].icon+"@2x.png")
+    
+    
+    
+    
+    today.append(cityNameEl, humidityEl, icon)
+    // today.appendChild(humidityEl)
+
+}
+
