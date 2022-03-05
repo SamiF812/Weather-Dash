@@ -53,12 +53,16 @@ function displayToday(data){
     humidityEl.innerText = "humidity: "+ data.humidity
     let icon = document.createElement("img")
     icon.setAttribute("src", "http://openweathermap.org/img/wn/"+data.weather[0].icon+"@2x.png")
+    let uvEL = document.createElement("p")
+    uvEL.innerText = "UV Index: " + data.uvi
+    let windEl = document.createElement("p")
+    windEl.innerText = "Wind: " + data.wind_speed
     
     
     
     
-    today.append(cityNameEl, humidityEl, icon)
-    // today.appendChild(humidityEl)
+    today.append(cityNameEl, humidityEl, icon, uvEL, windEl)
+    
 
 }
 
