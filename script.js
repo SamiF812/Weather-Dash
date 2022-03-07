@@ -49,8 +49,10 @@ function displayToday(data){
     today.innerHTML = ""
     let cityNameEl = document.createElement("h2")
     cityNameEl.innerText = currentCity
+    let tempEL = document.createElement("p")
+    tempEL.innerText = "Temp: "+ data.temp
     let humidityEl = document.createElement("p")
-    humidityEl.innerText = "humidity: "+ data.humidity
+    humidityEl.innerText = "Humidity: "+ data.humidity
     let icon = document.createElement("img")
     icon.setAttribute("src", "http://openweathermap.org/img/wn/"+data.weather[0].icon+"@2x.png")
     let uvEL = document.createElement("p")
@@ -61,7 +63,7 @@ function displayToday(data){
     
     
     
-    today.append(cityNameEl, humidityEl, icon, uvEL, windEl)
+    today.append(cityNameEl, tempEL, humidityEl, icon, uvEL, windEl,)
     
 
 }

@@ -16,7 +16,8 @@
         
         </section> 
     </header>
-    <main class="container-fluid">
+    <main>
+        <div class="container fluid"></div>
         <h2>Search for a City:</h2>
         <section class="columns searchBar">
         <form class="border p-2" id="searchform">
@@ -24,12 +25,12 @@
         <button class="button is-success is-one-quarter mx-1 my-3 submit" type="submit" id="submit">Search</button>
         </form>
         
-    </section>
+   
     
-        <section class="col-12 col-md- searchResult">
+        <section class="row searchResult">
         <!-- Current City Main Card -->
         <section class=" searchedCity" id="today">
-          <div class="card p-6">
+          <div class="col-lg-3 bg-light">
 
         <div class="content has-text-centered mb-6">
         </div>
@@ -37,8 +38,16 @@
             </div>
         </section>
 
-        <section></section>
-        <h3>5-Day Forecast</h3>
+        <div class="row d-block" id="fiveDay">
+            <div class="col-12">
+                <!-- <h3>5-Day Forecast</h3> -->
+            </div>
+        </div>
+        
+</div>
+</div>
+
+        
         </section>
         
     
