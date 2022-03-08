@@ -1,25 +1,17 @@
-
-
-.submit {
-   width: 100%;
+img {
+    /* max-height: 100px;
+    max-width: 100px; */
 }
 
-h2{
-font-size: 35px;
-font-weight: bold;
-margin-left: 0.5%;
+#fiveDay div {
+    max-width: 20%;
+
 }
 
-.searchResult{
-    max-height: 100%;
+#fiveDay {
+    width: 100%;
 }
 
-.searchedCity {
-margin-left: 20%;
-    
-    
-}
-
-h3 {
-    text-align: center;
+#today img {
+    width: unset;
 }

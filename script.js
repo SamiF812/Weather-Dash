@@ -4,6 +4,7 @@ let currentCity = "Orlando";
 let submit = document.querySelector("#submit");
 let searchBar = document.querySelector("#searchbar");
 
+
 function searchCity(city) {
     // constructing the query that will be put inside the fetch
     let cordQuery =
@@ -27,6 +28,7 @@ function searchCity(city) {
                 })
                 .then(function (data) {
                     displayToday(data.current)
+                    displayFive(data.daily)
                 })
                 .catch((err) => {
                     console.error(err);
@@ -50,7 +52,8 @@ function displayToday(data){
     let cityNameEl = document.createElement("h2")
     cityNameEl.innerText = currentCity
     let tempEL = document.createElement("p")
-    tempEL.innerText = "Temp: "+ data.temp
+    let tempF = (data.temp - 273.15) * 1.8 +32;
+    tempEL.innerText = "Temp: "+ tempF.toFixed(0);
     let humidityEl = document.createElement("p")
     humidityEl.innerText = "Humidity: "+ data.humidity
     let icon = document.createElement("img")
@@ -63,8 +66,37 @@ function displayToday(data){
     
     
     
-    today.append(cityNameEl, tempEL, humidityEl, icon, uvEL, windEl,)
+    today.append(cityNameEl, icon, tempEL, humidityEl, uvEL, windEl,)
     
 
+}
+
+function displayFive(weekly){
+    console.log(weekly);
+    let fiveDay = document.querySelector("#fiveDay")
+    fiveDay.innerHTML = ""
+    for(i=1; i<6; i++){
+    let data = weekly[i];
+    
+    let tempEL = document.createElement("p")
+    let tempF = (data.temp.day - 273.15) * 1.8 +32;
+    tempEL.innerText = "Temp: "+ tempF.toFixed(0);
+    let humidityEl = document.createElement("p")
+    humidityEl.innerText = "Humidity: "+ data.humidity
+    let icon = document.createElement("img")
+    icon.setAttribute("src", "http://openweathermap.org/img/wn/"+data.weather[0].icon+"@2x.png")
+    let uvEL = document.createElement("p")
+    uvEL.innerText = "UV Index: " + data.uvi
+    let windEl = document.createElement("p")
+    windEl.innerText = "Wind: " + data.wind_speed
+    
+    let fiveDayCard = document.createElement("div")
+    fiveDayCard.setAttribute("class","col");
+    
+    
+    
+    fiveDayCard.append(tempEL, humidityEl, icon, uvEL, windEl,)
+    fiveDay.append(fiveDayCard)
+    }
 }
 
