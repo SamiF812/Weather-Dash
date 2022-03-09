@@ -16,6 +16,7 @@ function searchCity(city) {
         .then(function (res) {
             return res.json();
         })
+        // second fetch taking the longitude and latitude and getting a city
         .then(function (data) {
             let lon = data[0].lon;
             let lat = data[0].lat;
@@ -38,15 +39,17 @@ function searchCity(city) {
             console.error(err);
         });
 }
+//event listener so that the button executes the search
 submit.addEventListener("click", function(event){
     event.preventDefault();
     currentCity = searchBar.value;
     searchCity(currentCity);
     
 })
-
+// function to display the current weather and create elements for the corresponding data
 function displayToday(data){
-    console.log(data)
+    let todayDate = document.createElement("h5")
+    todayDate.textContent = moment().format(`MM/DD/YYYY`);
     let today = document.querySelector("#today")
     today.innerHTML = ""
     let cityNameEl = document.createElement("h2")
@@ -63,21 +66,34 @@ function displayToday(data){
     let windEl = document.createElement("p")
     windEl.innerText = "Wind: " + data.wind_speed
     
+    // setting up UVI levels
+    if (data.uvi <= 2) {
+        uvEL.classList = "uv-low"
+    } 
+    if (data.uvi >2 && data.uvi <=5){
+        uvEL.classList = "uv-moderate"
+    }
+    if (data.uvi >5) {
+        uvEL.classList = "uv-high"
+    }
     
     
+    // appending to page to display on the website
+    today.append(cityNameEl,todayDate, icon, tempEL, humidityEl, uvEL, windEl,)
     
-    today.append(cityNameEl, icon, tempEL, humidityEl, uvEL, windEl,)
     
+
 
 }
-
+// the function for displaying the 5 day
 function displayFive(weekly){
-    console.log(weekly);
     let fiveDay = document.querySelector("#fiveDay")
     fiveDay.innerHTML = ""
     for(i=1; i<6; i++){
     let data = weekly[i];
-    
+    let unixDate = data.dt;
+    let weekDate = document.createElement("h6")
+    weekDate.textContent = moment.unix(unixDate).format(`MM/DD/YYYY`);
     let tempEL = document.createElement("p")
     let tempF = (data.temp.day - 273.15) * 1.8 +32;
     tempEL.innerText = "Temp: "+ tempF.toFixed(0);
@@ -94,8 +110,8 @@ function displayFive(weekly){
     fiveDayCard.setAttribute("class","col");
     
     
-    
-    fiveDayCard.append(tempEL, humidityEl, icon, uvEL, windEl,)
+    // displaying 5 day information on the page
+    fiveDayCard.append(tempEL, humidityEl, weekDate, icon, uvEL, windEl,)
     fiveDay.append(fiveDayCard)
     }
 }
