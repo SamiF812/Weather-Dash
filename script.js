@@ -3,8 +3,10 @@ const weatherAPI = "2f68f31ec768946954517a3458d379b7";
 let currentCity = "Orlando";
 let submit = document.querySelector("#submit");
 let searchBar = document.querySelector("#searchbar");
+let searchedCitiesArr = JSON.parse(localStorage.getItem("searchedCity"))? JSON.parse(localStorage.getItem("searchedCity")):[]
+let searchedCityEl = document.querySelector("#searchedCityDiv");
 
-
+displayStored()
 function searchCity(city) {
     // constructing the query that will be put inside the fetch
     let cordQuery =
@@ -30,6 +32,7 @@ function searchCity(city) {
                 .then(function (data) {
                     displayToday(data.current)
                     displayFive(data.daily)
+                    searchedCities()
                 })
                 .catch((err) => {
                     console.error(err);
@@ -42,7 +45,7 @@ function searchCity(city) {
 //event listener so that the button executes the search
 submit.addEventListener("click", function(event){
     event.preventDefault();
-    currentCity = searchBar.value;
+    currentCity = searchBar.value.toLowerCase();
     searchCity(currentCity);
     
 })
@@ -115,4 +118,26 @@ function displayFive(weekly){
     fiveDay.append(fiveDayCard)
     }
 }
+// checks array to see if current city already exists
+function searchedCities() {
+if (searchedCitiesArr.indexOf(currentCity) === -1) {
+    searchedCitiesArr.push(currentCity)
+    localStorage.setItem("searchedCity", JSON.stringify(searchedCitiesArr))
+    displayStored()
+}
 
+}
+
+function displayStored() {
+    searchedCityEl.innerHTML = ""
+    for(i=0; i<searchedCitiesArr.length; i++) {
+        let storedEL = document.createElement("button")
+        storedEL.innerText = searchedCitiesArr[i]
+        searchedCityEl.append(storedEL)
+        storedEL.addEventListener("click", function(event) {
+            event.preventDefault()
+            currentCity = event.target.innerText
+           searchCity(event.target.innerText)
+        }) 
+    }
+}
