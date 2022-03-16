@@ -10,7 +10,7 @@ displayStored()
 function searchCity(city) {
     // constructing the query that will be put inside the fetch
     let cordQuery =
-        "http://api.openweathermap.org/geo/1.0/direct?q=" +
+        "https://api.openweathermap.org/geo/1.0/direct?q=" +
         city +
         "&limit=1&appid=" +
         weatherAPI;
@@ -63,7 +63,7 @@ function displayToday(data){
     let humidityEl = document.createElement("p")
     humidityEl.innerText = "Humidity: "+ data.humidity
     let icon = document.createElement("img")
-    icon.setAttribute("src", "http://openweathermap.org/img/wn/"+data.weather[0].icon+"@2x.png")
+    icon.setAttribute("src", "https://openweathermap.org/img/wn/"+data.weather[0].icon+"@2x.png")
     let uvEL = document.createElement("p")
     uvEL.innerText = "UV Index: " + data.uvi
     let windEl = document.createElement("p")
@@ -103,7 +103,7 @@ function displayFive(weekly){
     let humidityEl = document.createElement("p")
     humidityEl.innerText = "Humidity: "+ data.humidity
     let icon = document.createElement("img")
-    icon.setAttribute("src", "http://openweathermap.org/img/wn/"+data.weather[0].icon+"@2x.png")
+    icon.setAttribute("src", "https://openweathermap.org/img/wn/"+data.weather[0].icon+"@2x.png")
     let uvEL = document.createElement("p")
     uvEL.innerText = "UV Index: " + data.uvi
     let windEl = document.createElement("p")
